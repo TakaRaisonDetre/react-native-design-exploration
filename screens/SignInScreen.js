@@ -13,6 +13,8 @@ import * as Animatable from 'react-native-animatable'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Feather from 'react-native-vector-icons/Feather'
 
+import{ AuthContext} from '../components/context'
+
 const SignInScreen = ({navigation}) =>{
 
 const [data, setData] = useState({
@@ -21,6 +23,8 @@ const [data, setData] = useState({
     check_textInputChange:false,
     secureTextEntry:true
 })
+
+const {signIn} = React.useContext(AuthContext)
 
 const textInputChange=(val) =>{
     if(val.length!==0) {
@@ -50,6 +54,11 @@ const updateSecureTextEntry = () =>{
         ...data,
         secureTextEntry:!data.secureTextEntry
     })
+}
+
+
+const loginHandle = (username, password)=>{
+  signIn(username, password);
 }
 
     return (
@@ -122,9 +131,8 @@ const updateSecureTextEntry = () =>{
             
              style={[styles.signIn, {
                  backgroundColor:'#05375a',
-                 marginTop:15,
-                 
-             }]}
+                 marginTop:15,}]}
+                 onPress={()=>{loginHandle(data.username, data.password)}}    
              >
                  <Text style={[styles.textSign, {color:"#fff"}]}>Sign In</Text>
              </TouchableOpacity>     
