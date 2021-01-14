@@ -20,7 +20,7 @@ const MainTabScreen = ()=>{
       
     >
       <Tab.Screen
-        name="home"
+        name="Home"
         component={HomeStackScreen}
         options={{
           tabBarLabel: 'Home',
