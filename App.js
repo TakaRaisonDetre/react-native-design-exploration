@@ -22,7 +22,7 @@ const App =()=>{
   // const [isLoading, setIsLoading] = useState(true)
   // const [userToken, setUserToken] = useState(null)
 
-const initialLogiState ={
+const initialLoginState ={
   isLoading :true,
   userName:null,
   userToken:null,
@@ -64,7 +64,7 @@ const loginReducer = (prevState, action )=>{
 }
 
 // create reducer by 
-const [loginState, dispatch] = useReducer(loginReducer, initialLogiState);
+const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
 
 
 const authContext = useMemo(()=>({
@@ -73,16 +73,17 @@ const authContext = useMemo(()=>({
     //  setIsLoading(false)
     let userToken;
     userToken=null
-if(userName=='user' && password=='pass') {
+if(userName==='user' && password==='pass') {
   try{
     userToken ='asdfaser233sdvqw3rvawef'
     await AsyncStorage.setItem('userToken', userToken)
+   
   } catch(e) {
     console.log(e)
   }
+  console.log('user token', userToken)
+  dispatch({type:'LOGIN', id: userName , token:userToken})
 }
-console.log('user token', userToken)
-   dispatch({type:'LOGIN', id: userName , token:userToken})
   },
   signUp: ()=>{
     setUserToken('faasdfasd')
@@ -100,13 +101,13 @@ console.log('user token', userToken)
   }
 }),[]);
 
-  useEffect(async()=>{
-    setTimeout(()=>{
+  useEffect(()=>{
+    setTimeout(async()=>{
      // setIsLoading(false);
      let userToken;
      userToken=null
      try{
-      userToken =await AsyncStorage.getItem('userToken')
+      userToken = await AsyncStorage.getItem('userToken')
     } catch(e) {
       console.log(e)
     }

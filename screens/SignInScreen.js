@@ -132,7 +132,7 @@ const loginHandle = (username, password)=>{
              style={[styles.signIn, {
                  backgroundColor:'#05375a',
                  marginTop:15,}]}
-                 onPress={()=>{loginHandle(data.username, data.password)}}    
+                 onPress={()=>{loginHandle(data.email, data.password)}}    
              >
                  <Text style={[styles.textSign, {color:"#fff"}]}>Sign In</Text>
              </TouchableOpacity>     
