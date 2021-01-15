@@ -14,7 +14,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 const MainTabScreen = ()=>{
     return (
-        <Tab.Navigator
+  <Tab.Navigator
       initialRouteName="Feed"
       activeColor="#fff"
       
