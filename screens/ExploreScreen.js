@@ -17,6 +17,7 @@ import {
   import Ionicons from 'react-native-vector-icons/Ionicons'
   import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
   import Fontisto from 'react-native-vector-icons/Fontisto'
+  import StarRating from '../components/StarRating'
 
   import {markers, mapDarkStyle, mapStandardStyle} from '../model/mapData'
 
@@ -231,7 +232,7 @@ const ExploreScreen =()=>{
             />
             <View style={styles.textContent}>
               <Text numberOfLines={1} style={styles.cardtitle}>{marker.title}</Text>
-              {/* <StarRating ratings={marker.rating} reviews={marker.reviews} /> */}
+              <StarRating ratings={marker.rating} reviews={marker.reviews} />
               <Text numberOfLines={1} style={styles.cardDescription}>{marker.description}</Text>
               <View style={styles.button}>
                 <TouchableOpacity

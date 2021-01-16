@@ -19,8 +19,8 @@ export const markers = [
      title: 'Vangi Sculpture Garden Museum & Restaurant',
      description: 'Vangi Sculpture Garden Museum opened on April 28, 2002, here on the hillside of Mt. Ashitaka, close to Mt. Fuji, ',
      image: Images[0].image,
-     raiting:4,
-     review:99, 
+     rating:5,
+     reviews:109, 
 },
 {
     coordinate:{
@@ -30,8 +30,8 @@ export const markers = [
     title: 'French Cuisine "Gawa  MISHIMA"',
     description: 'French Cuisine where guests are indulging with the taste of various Mishima brand meet and vegitables',
     image: Images[1].image,
-    raiting:4,
-    review:99, 
+    rating:3,
+    reviews:99, 
 },
 {
     coordinate:{
@@ -41,8 +41,8 @@ export const markers = [
     title: 'Sakuraーya Sea Eel',
     description: 'Japanese Trandial Sea Eal meal which you would definitely try',
     image: Images[2].image,
-    raiting:4,
-    review:99, 
+    rating:4,
+    reviews:99, 
 },
 ]
 
