@@ -11,8 +11,9 @@ import BookmarkScreen from './screens/BookmarkSection'
 
 import RootStackScreen from './screens/RootStackScreen'
 import { View, ActivityIndicator } from 'react-native';
-import {AuthContext} from './components/context'
 
+import {AuthContext} from './components/context'
+import {authContext } from './components/authContext'
 
 import {
   NavigationContainer, 
@@ -23,7 +24,8 @@ import {
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme} from 'react-native-paper';
 
-import AsyncStorage from '@react-native-community/async-storage'
+import AsyncStorage from '@react-native-community/async-storage';
+import {authReducer,initialLoginState} from './reducers/authReducer';
 
 const Drawer = createDrawerNavigator();
 
@@ -32,13 +34,7 @@ const App =()=>{
   // const [isLoading, setIsLoading] = useState(true)
   // const [userToken, setUserToken] = useState(null)
 
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
-
-const initialLoginState ={
-  isLoading :true,
-  userName:null,
-  userToken:null,
-}
+const [isDarkTheme, setIsDarkTheme] = useState(false);
 
 const CustomDefaultTheme  ={
   ...NavigationDefaultTheme,
@@ -61,84 +57,11 @@ const CustomDarkTheme ={
     text:'#fff'
   }
 }
-
 const theme = isDarkTheme ? CustomDarkTheme : CustomDefaultTheme;
 
-// set reducer 
-const loginReducer = (prevState, action )=>{
-   switch(action.type ) {
-     case 'RETRIEVE_TOKEN':
-       return {
-         ...prevState,
-         userToken:action.token,
-         isLoading:false,
-       }
-     case 'LOGIN':
-        return {
-          ...prevState,
-          userName: action.id,
-          userToken: action.token,
-          isLoading:false,
-        }
-     case 'LOGOUT':
-       return {
-        ...prevState,
-        userName: null,
-        userToken: null,
-        isLoading:false,
-       }
-     case 'REGISTER':
-       return {
-        ...prevState,
-        userName: action.id,
-        userToken: action.token,
-        isLoading:false,
-       }  
-
-   }
-
-}
-
 // create reducer by 
-const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
+const [loginState, dispatch] = useReducer(authReducer, initialLoginState);
 
-
-const authContext = useMemo(()=>({
-  signIn: async(userName, password)=>{
-    //  setUserToken('faasdfasd')
-    //  setIsLoading(false)
-    let userToken;
-    userToken=null
-if(userName==='user' && password==='pass') {
-  try{
-    userToken ='asdfaser233sdvqw3rvawef'
-    await AsyncStorage.setItem('userToken', userToken)
-   
-  } catch(e) {
-    console.log(e)
-  }
-  console.log('user token', userToken)
-  dispatch({type:'LOGIN', id: userName , token:userToken})
-}
-  },
-  signUp: ()=>{
-    setUserToken('faasdfasd')
-    setIsLoading(false)
-  },
-  signOut:async()=>{
-    // setUserToken(null);
-    // setIsLoading(false)
-    try {
-      await AsyncStorage.removeItem('userToken')
-    } catch(e) {
-      console.log(e);
-    }
-    dispatch({type:'LOGOUT'})
-  },
-  toggleTheme: ()=>{
-    setIsDarkTheme(isDarkTheme=> !isDarkTheme)
-  }
-}),[]);
 
   useEffect(()=>{
     setTimeout(async()=>{
